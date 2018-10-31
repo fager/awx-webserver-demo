@@ -5,6 +5,8 @@
   tasks:
     - name: stop Webserver
       command: curl http://{{ inventory_hostname }}
+      args:
+        warn: no
       register: curl
     - debug: var=curl.stdout_lines
 
