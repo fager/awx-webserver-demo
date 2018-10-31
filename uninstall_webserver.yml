@@ -1,0 +1,18 @@
+---
+- hosts: web
+  name: Remove the webserver
+  become: yes
+  vars:
+    httpd_packages:
+      - httpd
+      - mod_wsgi
+  tasks:
+    - name: stop Webserver
+      service:
+        name: httpd
+        state: stopped
+        enabled: no
+    - name: Remove the apache web server
+      yum:
+        name: "{{ httpd_packages }}"
+        state: absent

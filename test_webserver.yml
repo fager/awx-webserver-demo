@@ -1,0 +1,10 @@
+---
+- hosts: web
+  name: Remove the webserver
+  become: yes
+  tasks:
+    - name: stop Webserver
+      command: curl http://{{ inventory_hostname }}
+      register: curl
+    - debug: var=curl.stdout_lines
+
